@@ -5,6 +5,15 @@
   body {
     margin: 0;
     background: linear-gradient(90deg, #F5D7D8, #F1916D);
+    height: 100dvh;
+  }
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100dvh;
+    padding: 10px;
   }
   h2 {
     color: rgba(255, 255, 255, .75);
@@ -34,6 +43,21 @@
     height: 500px;
     overflow-y: scroll;
   }
+  .history::-webkit-scrollbar {
+    width: .5em;
+  }
+  .history::-webkit-scrollbar-track {
+    background: #473E66;
+    border-radius: 100vw;
+    margin-block: .5em;
+  }
+  .history::-webkit-scrollbar-thumb {
+    background: #BD83B8;
+    border-radius: 100vw;
+  }
+  .history::-webkit-scrollbar-thumb:hover {
+    background: #ea47dc;
+  }
   .calculator > button {
     cursor: pointer;
     font-size: 1rem;
@@ -43,12 +67,23 @@
     outline: none;
   }
   
-  .calculator > button:hover {
+  .digits:hover {
     background-color: rgba(255, 255, 255, .9);
   }
-  
+  .operators:hover {
+    background-color: rgba(255, 255, 255, .9);
+    color: black;
+  }
+  .operators, .digits {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+  }
   .spann {
     background-color: #F1916D;
+    color: white;
+  }
+  .spann:hover {
+    background-color: #e15624;
   }
   
   .digits {
@@ -57,11 +92,15 @@
 
   .operators {
     background-color: #BD83B8;
+    color: white;
   }
 
   .others {
     background-color: #1B332E;
     color: white;
+  }
+  .others:hover {
+    background-color: #257464;
   }
   
   .result {

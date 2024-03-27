@@ -137,6 +137,7 @@ function reducer(state, {type, params}){
         prevNum: null,
         operator: null,
         input: "",
+        history: [],
       }
 
     case ACTIONS.DELETE:
@@ -247,7 +248,8 @@ const initialState = {
 function App() {
   const [{currNum, prevNum, operator, history}, dispatch] = useReducer(reducer, initialState)
   return (
-    <div className="container">
+    <div className="main-container">
+      <div className="container">
       <div className="calculator">
       <div className="result">
         <div className="prev-number">{formatOperand(prevNum)}{operator}</div>
@@ -294,6 +296,7 @@ function App() {
         </ul>
       </div>
       </div>
+    </div>
     </div>
   )
 }
