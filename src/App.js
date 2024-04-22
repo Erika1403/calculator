@@ -14,6 +14,7 @@ export const ACTIONS = {
   CALCULATE: "calculate",
 }
 
+const operators = ['+', '-', '*', '÷','%', '√', '²', '+/-']
 
 function reducer(state, {type, params}){
   switch(type){
@@ -40,14 +41,7 @@ function reducer(state, {type, params}){
         operator: params.operator,
         currNum: null,
       }
-      if(state.operator === "²")
-      return {
-        ...state,
-        prevNum: compute(state.prevNum, state.operator),
-        input: state.input + params.operator,
-        operator: params.operator,
-        currNum: null,
-      }
+      
       if(state.currNum === null && state.prevNum === null){
         return state
       }
@@ -77,7 +71,7 @@ function reducer(state, {type, params}){
         currNum: null,
       }
     case ACTIONS.SINGLE_OPERATION:
-      {/* Equation is still looks ugly but it is functional*/}
+      {/* Equation still looks ugly but it is functional*/}
       if(state.currNum === null && params.signs === "√")
       return {
         ...state,
@@ -91,6 +85,11 @@ function reducer(state, {type, params}){
         prevNum: state.currNum,
         operator: "²",
         currNum: null,
+      }
+      if(params.signs === "x²")
+      return {
+        ...state,
+        currNum: compute(state.currNum, "²"),
       }
       
       if(state.currNum === null) return state
@@ -110,6 +109,15 @@ function reducer(state, {type, params}){
         history: [...state.history, state.input + state.currNum + "=" + compute(state.currNum, state.operator)],
         input: "",
         operator: null,
+      }
+      if(state.operator === "²")
+      return {
+        ...state,
+        currNum: compute(state.prevNum, state.operator),
+        history: [...state.history, state.input + "=" + compute(state.prevNum, state.operator)],
+        input: "",
+        operator: null,
+        prevNum: null,
       }
       if(state.currNum === null || state.prevNum === null || state.operator === null){
         return state
@@ -186,7 +194,6 @@ function compute(currNum, operator){
       result = num / 100;
       break
   }
-  
   return result.toString()
 }
 
